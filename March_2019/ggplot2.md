@@ -226,6 +226,11 @@ e2:一个plot组件，如下所述。
 
 ![](https://ws2.sinaimg.cn/large/006tKfTcly1g13u5uqhmaj31d50u0wp0.jpg)
 
+`k = ggplot(mtcars, aes(factor(cyl), fill = factor(vs)))`
+
+`k + geom_bar()`
+
+
 
 
 
