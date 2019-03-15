@@ -137,6 +137,101 @@ e2:一个plot组件，如下所述。
 
 `sctter_by(mtcars, cut3(disp), drat)`
 
+### 用例
+********************
+
+`aes_`以编程方式定义美学映射
+
+********************
+
+### 描述
+美学映射描述数据中的变量如何映射到geoms的视觉属性(美学)。aes()使用非标准计算来捕获变量名。aes_和aes_string要求您显式地引用输入，对于aes_string()使用""，对于aes_()使用引号或~。(aes_q是aes_的别名)。这使得aes_和aes_string易于编程。
+
+### 用例
+
+`aes_(x, y, ...)`
+
+`aes_string(x, y, ...)`
+
+`aes_q(x, y, ...)`
+
+### 解释
+`x, y, ...`名称值对列表。元素必须是带引号的调用、字符串、单侧公式或常量。
+
+### 细节
+在编写创建绘图的函数时，aes_string和aes_特别有用，因为您可以使用字符串或引用名称调用来定义美学映射，而不必使用substitute()来生成对aes()的调用。
+
+我建议使用aes_(),因为创建aes(colour=“my colour”)或aes与aes_string {x = `x$1`􏰞}()很笨重。
+
+### 另请参阅
+
+`aes()`
+
+### 例子
+以下效果相同
+
+`aes(mpg, wt, col = cyl)`
+
+`aes_(quote(mpg), quote(wt), col = quote(cyl))`
+
+`aes_(~mpg, ~wt, col = ~cyl)`
+
+`aes_string("mpg", "wt", col = "cyl")`
+
+你不能简单的用aes_string随意命名
+
+`aes('$100', colour = "smooth")`
+
+好的，，你可以，但是要求
+
+`aes_string("'$100'", colour = '"smooth"')`
+
+`var = "cyl"`
+
+`aes(col = x)`
+
+`aes_(col =as.name(var))`
+
+***********************
+
+`aes_colour_fill_alpha` 颜色，填充，深浅
+
+********************
+
+### 描述
+
+### 例子
+
+条形图
+
+`c = ggplot(mtcars, aes(factor(cyl)))`
+
+默认
+
+`c + geom_bar()`
+
+![](https://ws1.sinaimg.cn/large/006tKfTcly1g13ttbekdnj31d50u0asj.jpg)
+
+改变颜色
+
+`c + geom_bar(fill = "red")`
+
+![](https://ws2.sinaimg.cn/large/006tKfTcly1g13tvkya28j31d50u0anl.jpg)
+
+`c + geom_bar(colour = "red")`
+
+![](https://ws4.sinaimg.cn/large/006tKfTcly1g13tx676fbj31d50u0wy3.jpg)
+
+`c + geom_bar(fill = "white", colour = "red")`
+
+![](https://ws2.sinaimg.cn/large/006tKfTcly1g13u5uqhmaj31d50u0wp0.jpg)
+
+
+
+
+
+
+
 
 
 
