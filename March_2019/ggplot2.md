@@ -38,6 +38,7 @@ e2:一个plot组件，如下所述。
 `base = ggplot(mpg, aes(displ, hwy)) + geom_point + geom_smooth()`
 
 ![](https://ws4.sinaimg.cn/large/006tKfTcly1g12em6zen7j30id0dp0tq.jpg)
+
 `#要覆盖数据，你必须使用%+%`
 
 `base %+% subset(mpg, f1 == "p")`
@@ -111,5 +112,6 @@ e2:一个plot组件，如下所述。
 `ggplot(mpg) + geom_point(aes(displ, hwy))`
 
 ![](https://ws3.sinaimg.cn/large/006tKfTcly1g138ekozsej31d50u0k8f.jpg)
+
 
 
