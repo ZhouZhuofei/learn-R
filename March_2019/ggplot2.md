@@ -113,5 +113,32 @@ e2:一个plot组件，如下所述。
 
 ![](https://ws3.sinaimg.cn/large/006tKfTcly1g138ekozsej31d50u0k8f.jpg)
 
+`#整洁的评价`
+
+`#aes()会自动引用参数，所以你需要整理清楚。`
+
+`#计算以围绕ggplot2管道创建包装器。最简单的情况发生时，您的包装采取点:`
+
+`sctter_by <- function(data, ...) {ggplot(data) + geom_point(aes(...))}`
+
+`sctter_by(mtcars, disp, drat)`
+
+`#如果你的包装器有一个更具体的接口与命名参数，你需要“enquote和unquote”:`
+
+`sccter_by = function(data, x, y) { x = enquo(x); y = enquo(y); ggplot(data) + geom_point(aes(!!x, !!y))}`
+
+`sctter_by(mtcars, disp, drat)`
+
+![](https://ws1.sinaimg.cn/large/006tKfTcly1g13llmifk2j31d50u0aom.jpg)
+
+`#注意，包装器的用户可以在引用的表达式中使用他们自己的函数，并且所有这些函数都会按照应该的方式解析!`
+
+`cut3 = function(x) cut_number(x, 3)`
+
+`sctter_by(mtcars, cut3(disp), drat)`
+
+
+
+
 
 
