@@ -226,6 +226,127 @@ e2:一个plot组件，如下所述。
 
 ![](https://ws2.sinaimg.cn/large/006tKfTcly1g13u5uqhmaj31d50u0wp0.jpg)
 
+fill 可以带来不同的颜色，设置fill等于一个因素变量使用离散的颜色比例
+
+`k = ggplot(mtcars, aes(factor(cyl), fill = factor(vs)))`
+
+`k + geom_bar`
+
+![](https://ws2.sinaimg.cn/large/006tKfTcly1g14ft48j6cj31d50u016i.jpg)
+
+fill 也可以使用连续变量
+
+`m = ggplot(faithfuld, aes(waiting, eruptions))`
+
+`m + geom_raster()`
+
+`m + geom_raster(aes(fill = density))`
+
+![](https://ws4.sinaimg.cn/large/006tKfTcly1g14g332npaj31d50u0kjl.jpg)
+
+有些不能使用色彩调节
+
+`b = ggplot(economics, aes(x=date, y=unemploy))`
+
+`b + geom_line()`
+
+![](https://ws4.sinaimg.cn/large/006tKfTcly1g14gb1s1l4j31d50u0tsl.jpg)
+
+`b + geom_line(colour = "green")`
+
+![](https://ws1.sinaimg.cn/large/006tKfTcly1g14gblfcehj31d50u01da.jpg)
+
+`b + geom_line(colour = "blue") + geom_point(colour = "red")`
+
+![](https://ws1.sinaimg.cn/large/006tKfTcly1g14gct3hr3j31d50u0x2c.jpg)
+
+用于覆盖alpha值的大型数据集
+
+会使点更透明，易看
+
+`df = data.frame(x = rnorm(5000), y = rnorm(5000))`
+
+`h = ggplot(df, aes(x,y))`
+
+`h + geom_point()`
+
+![](https://ws4.sinaimg.cn/large/006tKfTcly1g14gk064xcj31d50u01kx.jpg)
+
+`h + geom_point(alpha = 0.5)`
+
+![](https://ws4.sinaimg.cn/large/006tKfTcly1g14gki90buj31d50u0e81.jpg)
+
+`h + geom_point(alpha = 0.1)`
+
+![](https://ws4.sinaimg.cn/large/006tKfTcly1g14gkyvc4oj31d50u07wh.jpg)
+
+**************************
+
+`aes_group_order`
+
+**************************
+
+### 描述
+
+`group`
+
+### 例子
+默认情况下，该组设置为图中所有离散变量的交互。这通常会正确地划分数据，但如果没有这样做，或者图中没有使用离散变量，则需要显式地定义分组结构，方法是将组映射到每个组具有不同值的变量。
+
+对于大多数情况下，划分数据可以aes(colour, shape, fill, linetype)or facets.
+
+`p = ggplot(mtcars, aes(wt, mpg))`
+
+`p + geom_point(size = 4)`
+
+![](https://ws2.sinaimg.cn/large/006tKfTcly1g14h6g5bgwj31d50u017p.jpg)
+
+`p + geom_point(aes(colour = factor(cyl)), size = 4)`
+
+![](https://ws1.sinaimg.cn/large/006tKfTcly1g14h7o0oxbj31d50u0ar2.jpg)
+
+`p + geom_point(aes(shape = factor(cyl)),size = 4)`
+
+![](https://ws1.sinaimg.cn/large/006tKfTcly1g14h9awzd9j31d50u0qil.jpg)
+
+fill
+
+`a = ggplot(mtcars, aes(factor(cyl))`
+
+`a + geom_bar()`
+
+`a + geom_bar(aes(fill =factor(cyl)))`
+
+![](https://ws3.sinaimg.cn/large/006tKfTcly1g14hegqkxwj31d50u016h.jpg)
+
+`a + geom_bar(aes(fill = factor(vs)))`
+
+![](https://ws1.sinaimg.cn/large/006tKfTcly1g14hdx9sxtj31d50u04c7.jpg)
+
+linetypes
+
+`rescale01 = function(x) (x - min(x)) / diff(range(x))`
+
+`ec_scaled = data.frame(date = economics$date, plyr::colwise(rescale01)(economics[,-(1:2)]))`
+
+`ecm = reshape2::melt(ec_scaled, id.vars = "date")`
+
+`f = ggplot(ecm, aes(date, value))`
+
+`f + geom_line(aes(linetype = variable))`
+
+![](https://ws2.sinaimg.cn/large/006tKfTcly1g14hm0j8bzj31d50u01kx.jpg)
+
+facets
+
+
+
+
+
+
+
+
+
 
 
 
