@@ -346,12 +346,6 @@ facets
 
 
 
-=======
-`k = ggplot(mtcars, aes(factor(cyl), fill = factor(vs)))`
-
-`k + geom_bar()`
->>>>>>> 0b82b2bcda968d0577f25fbfc5f83c86759c1c36
-
 
 
 
