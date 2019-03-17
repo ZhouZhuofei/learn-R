@@ -407,6 +407,8 @@ facets
 
 ![](https://ws1.sinaimg.cn/large/006tKfTcly1g15m63uc8rj31d50u0k62.jpg)
 
+
+
 十六进制字符串的一个例子，字符串“33”指定了三个on后面跟着三个off，“3313”指定了三个on后面跟着三个off后面跟着一个on，最后是三个off
 
 `f + geom_line(linetype = "3313")`
@@ -414,6 +416,10 @@ facets
 `ggplot(economics_long, aes(date, value01)) + geom_line(aes(linetype = variable))`
 
 ![](https://ws3.sinaimg.cn/large/006tKfTcly1g15mbowja4j31d50u01kx.jpg)
+
+`ggplot(economics_long, aes(date, value01)) + geom_line(aes(colour = variable))`
+
+![](https://ws4.sinaimg.cn/large/006tKfTcly1g15n8hgiswj31d50u0hdt.jpg)
 
 size example
 
