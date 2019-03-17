@@ -339,6 +339,147 @@ linetypes
 ![](https://ws2.sinaimg.cn/large/006tKfTcly1g14hm0j8bzj31d50u01kx.jpg)
 
 facets
+`k = ggplot(diamonds, aes(carat, stat(density))) + geom_histogram(binwidth = 0.2)`
+
+`k + facet_grid(. ~ cut)`
+
+![](https://ws2.sinaimg.cn/large/006tKfTcly1g15lj4voodj31d50u07wh.jpg)
+
+有三种常见的情况下，默认值是不够的，我们将在下面逐一考虑。在下面的示例中，我们将使用nlme包中的一个简单纵向数据集Oxboys。它记录了26个男孩(被试)的身高(身高)和中心年龄(年龄)，测量了9次。
+
+`h = ggplot(nlme::Oxboys, aes(age,height))`
+
+`h + geom_line()`
+
+![](https://ws4.sinaimg.cn/large/006tKfTcly1g15lnwxbzej31d50u0h59.jpg)
+
+`h + geom_line(aes(group = Subject))`
+
+![](https://ws4.sinaimg.cn/large/006tKfTcly1g15looxt2bj31d50u04n1.jpg)
+
+`h + geom_smooth(aes(group = Subject), method = "lm", se = FALSE)`
+
+![](https://ws1.sinaimg.cn/large/006tKfTcly1g15lsmxdt5j31d50u01kx.jpg)
+
+`h + geom_smooth(aes(group = 1), size = 2, method = "lm", se = FALSE)`
+
+![](https://ws3.sinaimg.cn/large/006tKfTcly1g15lsvirtlj31d50u0k8c.jpg)
+
+覆盖默认分组的绘图具有离散的比例，但您希望绘制跨组连接的线。这是交互图、概要图和平行坐标图等中使用的策略。例如，我们在每个测量场合绘制高度的箱形图
+
+`boysbox = ggplot(nlme::Oxboys, aes(Occasion, height))`
+
+`boysbox + geom_boxplot()`
+
+![](https://ws4.sinaimg.cn/large/006tKfTcly1g15lvt2n0oj31d50u0wun.jpg)
+
+`boysbox + geom_boxplot() + geom_line(aes(group = Subject), colour = "blue")`
+
+![](https://ws1.sinaimg.cn/large/006tKfTcly1g15lxl4f5uj31d50u04qp.jpg)
+
+******************************
+
+`aes_linetype_size_shape`
+
+*******************************
+
+### 描述
+
+本页面演示了aes的一个子组的用法;线形，大小和形状。
+
+### 例子
+
+0 =空白，1 =实线，2 =虚线，3 =虚线，4 =虚线，5 =长虚线，6 =双虚线
+
+0 = blank, 1 = solid, 2 = dashed, 3 = dotted, 4 = dotdash, 5 = longdash, 6 = twodash
+
+用数字代表不同的线的类型
+
+`df = data.frame(x = 1:10, y = 1:10)`
+
+`f = ggplot(df,aes(x, y))`
+
+`f + geom_line(linetype = 2)`
+
+![](https://ws2.sinaimg.cn/large/006tKfTcly1g15m503audj31d50u0k66.jpg)
+
+`f +geom_line(linetype = "dotdash")`
+
+![](https://ws1.sinaimg.cn/large/006tKfTcly1g15m63uc8rj31d50u0k62.jpg)
+
+十六进制字符串的一个例子，字符串“33”指定了三个on后面跟着三个off，“3313”指定了三个on后面跟着三个off后面跟着一个on，最后是三个off
+
+`f + geom_line(linetype = "3313")`
+
+`ggplot(economics_long, aes(date, value01)) + geom_line(aes(linetype = variable))`
+
+![](https://ws3.sinaimg.cn/large/006tKfTcly1g15mbowja4j31d50u01kx.jpg)
+
+size example
+
+`p = ggplot(mtcars, aes(wt, mpg))`
+
+`p = geom_point()`
+
+`p + geom_point(shape = 5)`
+
+![](https://ws2.sinaimg.cn/large/006tKfTcly1g15mges6agj31d50u0qhp.jpg)
+
+`p + geom_point(shape = 2)`
+
+![](https://ws3.sinaimg.cn/large/006tKfTcly1g15mj1iw47j31d50u0qi1.jpg)
+
+`p + geom_point(aes(size = qsec))`
+
+![](https://ws3.sinaimg.cn/large/006tKfTcly1g15mj1iw47j31d50u0qi1.jpg)
+
+`p + geom_point(aes(size = 2.5)) + geom_hline(yintercept = 25, size = 3.5)`
+
+![](https://ws3.sinaimg.cn/large/006tKfTcly1g15mmakf7lj31d50u017r.jpg)
+
+shape
+
+Shape接受四种类型的值:[0,25]中的整数，
+
+单个字符——使用该字符作为绘图符号，
+
+a.绘制可见的最小矩形(即，约1像素)
+
+`p + geom_point(shape = "k", size = 3)`
+
+![](https://ws2.sinaimg.cn/large/006tKfTcly1g15mpajwqmj31d50u0wt8.jpg)
+
+`df2 = data.frame(x = 1:5, y = 1:25, z = 1:25)`
+
+`s = ggplot(df2, aes(x,y))`
+
+`s + geom_point(aes(shape = z), size = 4) + scale_shape_identity()`
+
+![](https://ws4.sinaimg.cn/large/006tKfTcly1g15mtapjgzj31d50u0aob.jpg)
+
+fill
+
+`s + geom_point(aes(shape = z), size = 4, colour = "red") + scale_shape_identity()`
+
+![](https://ws4.sinaimg.cn/large/006tKfTcly1g15mxmlk4bj31d50u07is.jpg)
+
+`s + geom_point(aes(shape = z), size = 4, colour = "red", fill = "black") + scale_shape_identity()`
+
+![](https://ws1.sinaimg.cn/large/006tKfTcly1g15mxuyf4gj31d50u0tn3.jpg)
+
+****************
+
+`aes_position`
+
+******************
+
+### 描述
+
+
+
+
+
+
 
 
 
