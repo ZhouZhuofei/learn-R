@@ -45,3 +45,33 @@ There are two types of bar charts: geom_bar() and geom_col().geom_bar() makes th
 `g + geom_bar()`
 
 ![](https://ws1.sinaimg.cn/large/006tKfTcly1g1lzbc0skfj31d80u0h3o.jpg)
+
+`g + geom_bar(aes(weight = displ))`
+
+![](https://ws3.sinaimg.cn/large/006tKfTcly1g1n2zi30s7j31d80u0nci.jpg)
+
+`g + geom_bar(aes(fill = drv))`
+
+![](https://ws4.sinaimg.cn/large/006tKfTcly1g1n31tpza5j31d80u0h1o.jpg)
+
+`g + geom_bar(aes(fill = drv), position = position_stack(reverse = TRUE)) + coord_flip() + theme(legend.position = "top")`
+
+![](https://ws1.sinaimg.cn/large/006tKfTcly1g1n34fyuhij31d80u016b.jpg)
+
+`df = data.frame(trt = c("a", "b", "c"), outcome = c(2.3, 1.9, 3.2))`
+
+`ggplot(df, aes(trt, outcome)) + geom_col()`
+
+![](https://ws3.sinaimg.cn/large/006tKfTcly1g1n376d9xxj31d80u0h0y.jpg)
+
+`ggplot(df, aes(trt, outcome)) + geom_point()`
+
+![](https://ws4.sinaimg.cn/large/006tKfTcly1g1n38x1lhwj31d80u0k24.jpg)
+
+`df = data.frame(x = rep(c(2.9, 3.1, 4.5), c(5, 10, 4)))`
+
+`ggplot(df, aes(x)) + geom_bar()`
+
+`ggplot(df, aes(x)) + geom_histogram(binwidth = 0.5)`
+
+![](https://ws1.sinaimg.cn/large/006tKfTcly1g1n3bptvjoj31d80u0qh5.jpg)
